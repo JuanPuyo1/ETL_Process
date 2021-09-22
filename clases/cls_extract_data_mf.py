@@ -40,6 +40,10 @@ class extract_data_mf(object):
         self.lst_files = None
         self.competition = None
         self.dataset = None
+        
+        
+        
+        
 
 #%%
     def set_kaggle_api(self,path_auth):
