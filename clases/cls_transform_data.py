@@ -15,7 +15,8 @@ class transform_data(object):
         self.status = False
         self.extractor = None
    
-#%%    
+#%%  
+##  
     def set_data(self, data=None, path=None):
         if path is None:
             self.data=data            
@@ -25,7 +26,8 @@ class transform_data(object):
             except Exception as exc:
                 self.show_error(exc)
             
-#%%    
+#%%
+##Metodo 0. Elimimar columnas
     def drop_columns(self, col_list):
         if len(col_list)>0:
             ##Lllamado al metodo drop del dataframe
@@ -149,7 +151,8 @@ class transform_data(object):
         except Exception as exc:
             self.show_error(exc)
         
-#%%  
+#%%
+##Metodo 8. Creacion de datos semiestructurados
     def to_xml(self,df):
         def row_xml(row):
             try:
@@ -165,7 +168,8 @@ class transform_data(object):
         res = '\n'.join(df.apply(row_xml, axis=1))
         return(res)
 
-#%%    
+#%%
+##Metodo 9. Cambio del formato de fecha al estandar de latino america
     def format_publish_date_us_to_latam(self, date_str):
         try:
             return datetime.strptime(date_str, "%Y-%m-%d").strftime('%d/%m/%Y')
@@ -174,6 +178,7 @@ class transform_data(object):
         
 
 #%%    
+##Metodo 9.1 Normalizacion del formato de fecha
     def normalize_trending_date(self, column_name):
         ##Recorrer elemento por elemento
         try:
@@ -181,7 +186,8 @@ class transform_data(object):
         except Exception as exc:
             self.show_error(exc)
         
-#%%    
+#%%
+##Metodo 9.2 Normalizacion del formato de fecha
     def format_date_us_to_latam(self, date_str):
         try:
             return datetime.strptime(date_str, "%Y.%d.%m").strftime('%d/%m/%Y')
@@ -190,6 +196,7 @@ class transform_data(object):
     
 
 #%%   
+##Metodo 10. Almecenar datos de DataFrame a un archivo .csv
     def save_data_csv(self, path):                   
         if self.data is not None:
             self.data.to_csv(path)
